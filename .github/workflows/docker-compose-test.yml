@@ -1,0 +1,64 @@
+name: Test Docker Compose Setup
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  docker-compose-check:
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker:24.0.7
+        options: --privileged
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Compose
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
+
+      - name: Build and run containers
+        run: docker-compose up -d --build
+
+      - name: Wait for Postgres to be healthy
+        run: |
+          for i in {1..20}; do
+            STATUS=$(docker inspect --format='{{.State.Health.Status}}' poker-db)
+            echo "Postgres health status: $STATUS"
+            if [ "$STATUS" == "healthy" ]; then
+              echo "Postgres is healthy"
+              break
+            fi
+            sleep 5
+          done
+
+      - name: Check backend health
+        run: |
+          for i in {1..20}; do
+            if curl -s http://localhost:8000 >/dev/null; then
+              echo "Backend is responding"
+              break
+            fi
+            echo "Waiting for backend..."
+            sleep 5
+          done
+
+      - name: Check frontend health
+        run: |
+          for i in {1..20}; do
+            if curl -s http://localhost:3000 >/dev/null; then
+              echo "Frontend is responding"
+              break
+            fi
+            echo "Waiting for frontend..."
+            sleep 5
+          done
+
+      - name: Print container logs if needed
+        if: failure()
+        run: docker-compose logs
