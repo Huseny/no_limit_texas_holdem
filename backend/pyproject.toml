@@ -1,0 +1,24 @@
+[project]
+authors = [
+  {name = "Husen Yusuf", email = "husenyusuf79@gmail.com"},
+]
+dependencies = [
+  "fastapi (>=0.116.0,<0.117.0)",
+  "uvicorn (>=0.35.0,<0.36.0)",
+  "psycopg2-binary (>=2.9.10,<3.0.0)",
+  "pokerkit (>=0.6.3,<0.7.0)",
+]
+description = ""
+name = "backend"
+readme = "README.md"
+requires-python = ">=3.13"
+version = "0.1.0"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+httpx = "^0.28.1"
+pytest-asyncio = "^1.0.0"
