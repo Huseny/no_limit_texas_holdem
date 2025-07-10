@@ -27,27 +27,27 @@ class Logger:
     def _log_player_dealt_cards(state: GameState, player_id: str, cards: List[str]):
         """Logs cards dealt to a specific player."""
         Logger._add_log_entry(
-            state, f"Player {player_id.split("_")[1]} is dealt {''.join(cards)}"
+            state, f"Player {player_id.split('_')[1]} is dealt {''.join(cards)}"
         )
 
     @staticmethod
     def _log_dealer(state: GameState, player_id: str):
         """Logs who the dealer is."""
-        Logger._add_log_entry(state, f"Player {player_id.split("_")[1]} is the dealer")
+        Logger._add_log_entry(state, f"Player {player_id.split('_')[1]} is the dealer")
 
     @staticmethod
     def _log_small_blind(state: GameState, player_id: str, amount: int):
         """Logs the small blind posting."""
         Logger._add_log_entry(
             state,
-            f"Player {player_id.split("_")[1]} posts small blind - {amount} chips",
+            f"Player {player_id.split('_')[1]} posts small blind - {amount} chips",
         )
 
     @staticmethod
     def _log_big_blind(state: GameState, player_id: str, amount: int):
         """Logs the big blind posting."""
         Logger._add_log_entry(
-            state, f"Player {player_id.split("_")[1]} posts big blind - {amount} chips"
+            state, f"Player {player_id.split('_')[1]} posts big blind - {amount} chips"
         )
 
     @staticmethod
@@ -103,34 +103,34 @@ class Logger:
     @staticmethod
     def _log_action_fold(state: GameState, player_id: str):
         """Logs a player folding."""
-        Logger._add_log_entry(state, f"Player {player_id.split("_")[1]} folds")
+        Logger._add_log_entry(state, f"Player {player_id.split('_')[1]} folds")
 
     @staticmethod
     def _log_action_check(state: GameState, player_id: str):
         """Logs a player checking."""
-        Logger._add_log_entry(state, f"Player {player_id.split("_")[1]} checks")
+        Logger._add_log_entry(state, f"Player {player_id.split('_')[1]} checks")
 
     @staticmethod
     def _log_action_call(state: GameState, player_id: str):
         """Logs a player calling."""
-        Logger._add_log_entry(state, f"Player {player_id.split("_")[1]} calls")
+        Logger._add_log_entry(state, f"Player {player_id.split('_')[1]} calls")
 
     @staticmethod
     def _log_action_bet(state: GameState, player_id: str, amount: int):
         """Logs a player betting."""
-        Logger._add_log_entry(state, f"Player {player_id.split("_")[1]} bets {amount}")
+        Logger._add_log_entry(state, f"Player {player_id.split('_')[1]} bets {amount}")
 
     @staticmethod
     def _log_action_raise(state: GameState, player_id: str, total_amount: int):
         """Logs a player raising."""
         Logger._add_log_entry(
-            state, f"Player {player_id.split("_")[1]} raises to {total_amount} chips"
+            state, f"Player {player_id.split('_')[1]} raises to {total_amount} chips"
         )
 
     @staticmethod
     def _log_action_all_in(state: GameState, player_id: str):
         """Logs a player going all-in."""
-        Logger._add_log_entry(state, f"Player {player_id.split("_")[1]} goes all-in")
+        Logger._add_log_entry(state, f"Player {player_id.split('_')[1]} goes all-in")
 
     @staticmethod
     def log_action(
