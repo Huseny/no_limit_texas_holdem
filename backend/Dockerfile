@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # Set the working directory
 WORKDIR /app
@@ -12,6 +12,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install Poetry
 RUN curl -sSL https://install.python-poetry.org | python3 - && \
     ln -s /root/.local/bin/poetry /usr/local/bin/poetry
+
+# Make sure Poetry is in PATH
+ENV PATH="/root/.local/bin:$PATH"
+ENV POETRY_VIRTUALENVS_CREATE=false
+
 
 # Copy only dependency files first for caching
 COPY pyproject.toml ./
