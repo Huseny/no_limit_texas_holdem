@@ -40,7 +40,7 @@ jobs:
       - name: Check backend health
         run: |
           for i in {1..20}; do
-            if curl -s http://localhost:8000 >/dev/null; then
+            if curl -s http://localhost:8000/ >/dev/null; then
               echo "Backend is responding"
               break
             fi
@@ -62,3 +62,9 @@ jobs:
       - name: Print container logs if needed
         if: failure()
         run: docker-compose logs
+
+      - name: Docker ps
+        run: docker ps -a
+
+      - name: Logs from backend
+        run: docker logs poker-backend
